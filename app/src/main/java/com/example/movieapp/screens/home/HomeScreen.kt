@@ -28,7 +28,7 @@ fun HomeScreen(navController: NavController) {
                     Text("Movies")
                 },
                 modifier = Modifier.shadow(elevation = 5.dp),
-                colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Color.Magenta)
+                colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Color.LightGray)
             )
         }
     ) {
