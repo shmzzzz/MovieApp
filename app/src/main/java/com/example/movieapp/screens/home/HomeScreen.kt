@@ -15,8 +15,10 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.movieapp.MovieRow
+import com.example.movieapp.model.Movie
+import com.example.movieapp.model.getMovies
 import com.example.movieapp.navigation.MovieScreens
+import com.example.movieapp.widgets.MovieRow
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -43,18 +45,7 @@ fun HomeScreen(navController: NavController) {
 @Composable
 fun MainContent(
     navController: NavController,
-    movieList: List<String> = listOf(
-        "Movie 1",
-        "Movie 2",
-        "Movie 3",
-        "Movie 4",
-        "Movie 5",
-        "Movie 6",
-        "Movie 7",
-        "Movie 8",
-        "Movie 9",
-        "Movie 10",
-    )
+    movieList: List<Movie> = getMovies()
 ) {
     Column(
         modifier = Modifier.padding(all = 12.dp)
