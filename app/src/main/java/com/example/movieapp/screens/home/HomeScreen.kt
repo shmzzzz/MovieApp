@@ -43,7 +43,18 @@ fun HomeScreen(navController: NavController) {
 @Composable
 fun MainContent(
     navController: NavController,
-    movieList: List<String> = listOf("Movie 1", "Movie 2", "Movie 3")
+    movieList: List<String> = listOf(
+        "Movie 1",
+        "Movie 2",
+        "Movie 3",
+        "Movie 4",
+        "Movie 5",
+        "Movie 6",
+        "Movie 7",
+        "Movie 8",
+        "Movie 9",
+        "Movie 10",
+    )
 ) {
     Column(
         modifier = Modifier.padding(all = 12.dp)
