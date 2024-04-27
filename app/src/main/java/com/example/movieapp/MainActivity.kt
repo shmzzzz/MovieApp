@@ -18,30 +18,29 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            MovieAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+            MyApp {
+                MainContent()
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun MyApp(content: @Composable () -> Unit) {
+    MovieAppTheme {
+        content()
+    }
+}
+
+@Composable
+fun MainContent() {
+    Text(text = "Hello, world!")
 }
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
-    MovieAppTheme {
-        Greeting("Android")
+fun DefaultPreview() {
+    MyApp {
+        MainContent()
     }
 }
