@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CornerSize
@@ -28,8 +27,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
@@ -49,7 +53,7 @@ fun MovieRow(
         modifier = Modifier
             .padding(all = 4.dp)
             .fillMaxWidth()
-            .height(130.dp)
+//            .height(130.dp)
             .clickable {
                 onItemClick(movie.id)
             },
@@ -94,7 +98,20 @@ fun MovieRow(
 
                 AnimatedVisibility(visible = expanded.value) {
                     Column() {
-                        Text(text = "Hello there")
+                        Text(text = buildAnnotatedString {
+                            withStyle(style = SpanStyle(color = Color.DarkGray, fontSize = 13.sp)) {
+                                append("Plot: ")
+                            }
+                            withStyle(
+                                style = SpanStyle(
+                                    color = Color.DarkGray,
+                                    fontSize = 13.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            ) {
+                                append(movie.plot)
+                            }
+                        })
                     }
                 }
                 Icon(
