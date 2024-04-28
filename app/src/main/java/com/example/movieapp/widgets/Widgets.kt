@@ -1,5 +1,6 @@
 package com.example.movieapp.widgets
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,6 +13,7 @@ import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -19,6 +21,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -38,6 +42,9 @@ fun MovieRow(
     movie: Movie = getMovies().first(),
     onItemClick: (String) -> Unit = {}
 ) {
+    var expanded = remember {
+        mutableStateOf(false)
+    }
     Card(
         modifier = Modifier
             .padding(all = 4.dp)
@@ -84,15 +91,20 @@ fun MovieRow(
                     text = "Released: ${movie.year}",
                     style = MaterialTheme.typography.titleSmall
                 )
-                Column(){
-                    
+
+                AnimatedVisibility(visible = expanded.value) {
+                    Column() {
+                        Text(text = "Hello there")
+                    }
                 }
                 Icon(
-                    imageVector = Icons.Filled.KeyboardArrowDown,
+                    imageVector = if (expanded.value) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown,
                     contentDescription = "Down Arrow",
                     modifier = Modifier
                         .size(25.dp)
-                        .clickable { },
+                        .clickable {
+                            expanded.value = !expanded.value
+                        },
                     tint = Color.DarkGray,
                 )
             }
