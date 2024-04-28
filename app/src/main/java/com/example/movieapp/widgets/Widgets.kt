@@ -10,14 +10,18 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
@@ -31,7 +35,7 @@ import com.example.movieapp.model.getMovies
 @Preview
 @Composable
 fun MovieRow(
-    movie: Movie = getMovies()[0],
+    movie: Movie = getMovies().first(),
     onItemClick: (String) -> Unit = {}
 ) {
     Card(
@@ -58,7 +62,7 @@ fun MovieRow(
             ) {
                 AsyncImage(
                     model = ImageRequest.Builder(LocalContext.current)
-                        .data(movie.images[0])
+                        .data(movie.images.first())
                         .crossfade(true)
                         .transformations(CircleCropTransformation())
                         .build(),
@@ -79,6 +83,17 @@ fun MovieRow(
                 Text(
                     text = "Released: ${movie.year}",
                     style = MaterialTheme.typography.titleSmall
+                )
+                Column(){
+                    
+                }
+                Icon(
+                    imageVector = Icons.Filled.KeyboardArrowDown,
+                    contentDescription = "Down Arrow",
+                    modifier = Modifier
+                        .size(25.dp)
+                        .clickable { },
+                    tint = Color.DarkGray,
                 )
             }
         }
