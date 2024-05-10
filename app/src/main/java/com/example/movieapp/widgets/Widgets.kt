@@ -47,7 +47,7 @@ fun MovieRow(
     movie: Movie = getMovies().first(),
     onItemClick: (String) -> Unit = {}
 ) {
-    var expanded = remember {
+    val expanded = remember {
         mutableStateOf(false)
     }
     Card(
@@ -134,7 +134,7 @@ fun MovieRow(
                 }
                 Icon(
                     imageVector = if (expanded.value) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown,
-                    contentDescription = "Down Arrow",
+                    contentDescription = if (expanded.value) "Up Arrow" else "Down Arrow",
                     modifier = Modifier
                         .size(25.dp)
                         .clickable {
